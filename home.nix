@@ -112,6 +112,7 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+
   ];
 
   # starship - an customizable prompt for any shell
@@ -125,7 +126,7 @@
 #      line_break.disabled = true;
 #    };
 #  };
-  
+
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
 #  programs.alacritty = {
 #    enable = true;
@@ -140,6 +141,13 @@
 #      selection.save_to_clipboard = true;
 #    };
 #  };
+
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      llvm-vs-code-extensions.vscode-clangd
+    ];
+  };
 
   programs.bash = {
     enable = true;
@@ -172,4 +180,3 @@
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
-
