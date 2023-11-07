@@ -156,7 +156,7 @@ in
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-  vim emacs29 git gnupg qemu python3 pinentry
+  vim emacs29 git git-doc gnupg qemu python3 pinentry
 
   foot
   dbus-sway-environment
@@ -176,6 +176,8 @@ in
   wdisplays # tool to configure displays
 
   qemu_full
+
+  tcl tk
 
   llvmPackages_16.clangUseLLVM
 
