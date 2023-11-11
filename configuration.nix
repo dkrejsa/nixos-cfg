@@ -18,8 +18,8 @@ let
 
     text = ''
       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-      systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
-      systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+      systemctl --user stop pipewire wireplumber xdg-desktop-portal xdg-desktop-portal-wlr
+      systemctl --user start pipewire wireplumber xdg-desktop-portal xdg-desktop-portal-wlr
     '';
   };
 
@@ -89,7 +89,7 @@ in
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   # and sway in the gdm greeter
-  services.xserver.displayManager.sessionPackages = [ pkgs.sway ];
+  # services.xserver.displayManager.sessionPackages = [ pkgs.sway ];
 
   services.xserver.desktopManager.gnome.enable = true;
 
@@ -117,6 +117,8 @@ in
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+    # use this instead of media-session:
+    wireplumber.enable = true;
   };
 
   # Needed by sway with home manager
@@ -158,6 +160,14 @@ in
   #  wget
   vim emacs29 git git-doc gnupg qemu python3 pinentry
 
+  # https://github.com/flatpak/xdg-desktop-portal/issues/986
+  # replace dbus with dbus-broker to work around xdg-desktop-portal start-up
+  # timeout, & slow firefox (etc.) startup
+
+  # dbus-broker
+
+  xdg-desktop-portal  xdg-desktop-portal-wlr
+  pipewire wireplumber
   foot
   dbus-sway-environment
   configure-gtk
@@ -183,6 +193,8 @@ in
 
   zoom-us
 
+  libcamera
+
   vlc libvlc gst_all_1.gstreamer
   gst_all_1.gst-plugins-good gst_all_1.gst-plugins-ugly gst_all_1.gst-plugins-bad
 
@@ -191,6 +203,8 @@ in
   ];
 
   services.dbus.enable = true;
+  services.dbus.implementation = "broker";
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
