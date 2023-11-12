@@ -158,7 +158,7 @@ in
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-  vim emacs29 git git-doc gnupg qemu python3 pinentry
+  vim emacs29 git git-doc gitFull gnupg qemu python3 pinentry
 
   # https://github.com/flatpak/xdg-desktop-portal/issues/986
   # replace dbus with dbus-broker to work around xdg-desktop-portal start-up
@@ -216,6 +216,7 @@ in
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    # extraOptions = [ "--debug" ];
   };
 
   environment.variables.EDITOR = "vim";
