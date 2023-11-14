@@ -113,6 +113,8 @@
     pciutils # lspci
     usbutils # lsusb
 
+    inkscape krita
+
   ];
 
   # starship - an customizable prompt for any shell
