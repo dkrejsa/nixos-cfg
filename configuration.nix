@@ -198,6 +198,8 @@ in
   vlc libvlc gst_all_1.gstreamer
   gst_all_1.gst-plugins-good gst_all_1.gst-plugins-ugly gst_all_1.gst-plugins-bad
 
+  widevine-cdm
+
   # Install Helix from the `helix` input
   helix.packages."${pkgs.system}".helix
   ];
