@@ -200,6 +200,12 @@ in
 
   widevine-cdm
 
+  pulseaudio
+
+  cmake ninja
+
+  man-pages
+
   # Install Helix from the `helix` input
   helix.packages."${pkgs.system}".helix
   ];
