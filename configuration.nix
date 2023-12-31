@@ -166,6 +166,8 @@ in
 
   # dbus-broker
 
+  dbus
+
   xdg-desktop-portal  xdg-desktop-portal-wlr
   pipewire wireplumber
   foot
